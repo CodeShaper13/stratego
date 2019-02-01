@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class AvailibleTeams {
 
     private List<Team> freeTeams;
     private List<Team> usedTeams;
+
+    public Dictionary<Team, int> teamToSliceMapping;
 
     public AvailibleTeams(int maxPlayers) {
         this.freeTeams = new List<Team>(3);
@@ -23,7 +26,31 @@ public class AvailibleTeams {
             this.freeTeams.Add(Team.PURPLE);
         }
 
-        //this.shuffleList<Team>(this.freeTeams);
+
+        //this.freeTeams.shuffle();
+
+
+        this.teamToSliceMapping = new Dictionary<Team, int>();
+
+        if(maxPlayers == 2) {
+            Debug.Log("PROBLEM!!! In availibleTeams.cs");
+        }
+        else if(maxPlayers == 3) {
+            for(int i = 0; i < 3; i++) {
+                this.teamToSliceMapping.Add(this.freeTeams[i], i * 2);
+            }
+        }
+        else if(maxPlayers == 4) {
+            this.teamToSliceMapping.Add(this.freeTeams[0], 0);
+            this.teamToSliceMapping.Add(this.freeTeams[1], 1);
+            this.teamToSliceMapping.Add(this.freeTeams[2], 3);
+            this.teamToSliceMapping.Add(this.freeTeams[3], 4);
+        }
+        else if(maxPlayers == 6) {
+            for(int i = 0; i < 6; i++) {
+                this.teamToSliceMapping.Add(this.freeTeams[i], i);
+            }
+        }
     }
 
     public bool moreRoom() {
@@ -39,15 +66,14 @@ public class AvailibleTeams {
         return team;
     }
 
-    private void shuffleList<T>(List<T> list) {
-        int n = list.Count;
-        System.Random rnd = new System.Random();
-        while(n > 1) {
-            int k = (rnd.Next(0, n) % n);
-            n--;
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
+    public class Clazz {
+
+        public int sliceIndex;
+        public Team team;
+
+        public Clazz(Team team, int i) {
+            this.team = team;
+            this.sliceIndex = i;
         }
     }
 }

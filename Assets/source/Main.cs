@@ -11,11 +11,13 @@ public class Main : MonoBehaviour {
     public int state;
     private NetworkDiscovery discovery;
 
-    [SerializeField] // Debug
     private string username;
+    public Tips tips;
 
     private void Awake() {
         Main.singleton = this;
+
+        this.tips = new Tips();
 
         NetworkTransport.Init();
 

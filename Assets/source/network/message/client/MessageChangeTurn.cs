@@ -1,13 +1,13 @@
-﻿public class MessageChangTeurn : AbstractMessageClient {
+﻿public class MessageChangeTurn : AbstractMessageClient {
 
     public int i;
     public bool isMyTurn;
 
-    public MessageChangTeurn() { }
+    public MessageChangeTurn() { }
 
-    public MessageChangTeurn(int i, bool flag) {
+    public MessageChangeTurn(int i, bool isTurn) {
         this.i = i;
-        this.isMyTurn = flag;
+        this.isMyTurn = isTurn;
     }
 
     public override short getID() {

@@ -17,9 +17,11 @@ public class Cell : NetworkBehaviour {
 
     private void Start() {
         // Color the Cell.
-        Material m = this.func();
-        if(m != null) {
-            this.GetComponent<MeshRenderer>().material = m;
+        if(!this.isWater) {
+            Material m = this.func();
+            if(m != null) {
+                this.GetComponent<MeshRenderer>().material = m;
+            }
         }
 
         // Compute the neighbors.
@@ -58,7 +60,7 @@ public class Cell : NetworkBehaviour {
         else if(this.teamID == Team.PURPLE.getId()) {
             return References.list.groundPurple;
         }
-        return null;
+        return References.list.matPieceGreen;
     }
 
     private void OnDrawGizmos() {

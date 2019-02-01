@@ -42,10 +42,10 @@ public class NetHandlerServer : NetHandlerBase {
             // We are attacking!
 
             // Reveal the piece value to the player who initiated the attack.
-            ConnectedPlayer cp = this.board.getConnectedPlayer(movingPiece);
+            ConnectedPlayer cp = this.board.getControllingPlayer(movingPiece);
 
             // Start the attack effect.
-            this.board.attack = new Attack(movingPiece, destinationPiece, cp);
+            this.board.attack = new Attack(this.board, movingPiece, destinationPiece, cp);
         } else {
             // Cell is empty, just move the piece to the cell.
             movingPiece.setDestination(destination);

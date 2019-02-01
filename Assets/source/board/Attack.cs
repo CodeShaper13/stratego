@@ -2,12 +2,14 @@
 
 public class Attack {
 
+    private Board board;
     private Piece attacker;
     private Piece defender;
     private Cell defenderCell;
     private ConnectedPlayer initiator;
 
-    public Attack(Piece attacker, Piece defender, ConnectedPlayer initiator) {
+    public Attack(Board board, Piece attacker, Piece defender, ConnectedPlayer initiator) {
+        this.board = board;
         this.attacker = attacker;
         this.defender = defender;
         this.defenderCell = this.defender.getCell();
@@ -25,7 +27,7 @@ public class Attack {
         this.func(this.defender, this.attacker);
 
         if(Vector3.Distance(this.attacker.transform.position, this.defender.transform.position) <= 0.1f) {
-            // Piece are close enough.
+            // Pieces are close enough.
 
             // Find out the outcome of the attack.
             bool defenderDestroyed = false;
@@ -45,6 +47,10 @@ public class Attack {
                 defenderDestroyed = true;
 
                 this.attacker.setDestination(this.defenderCell);
+
+                if(this.defender.pieceType == PieceType.FLAG) {
+                    this.board.eliminatePlayer(this.board.getControllingPlayer(this.defender), true);
+                }
             }
 
             if(!defenderDestroyed) {

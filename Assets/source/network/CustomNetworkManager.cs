@@ -18,6 +18,8 @@ public class CustomNetworkManager : NetworkManager {
 
         this.discovery.Initialize();
         this.discovery.StartAsServer();
+
+        this.board.init();
     }
 
     public override void OnStopServer() {
@@ -34,13 +36,11 @@ public class CustomNetworkManager : NetworkManager {
         Team team = this.board.availibleTeams.getRandomTeam();
         int teamId = team.getId();
 
-        string uppderName = team.getName().ToUpper();
-        GameObject obj = GameObject.Find("BASE_" + uppderName);
-        if(obj == null) {
-            throw new Exception("Could not find GameObject with name \"BASE_" + uppderName +"\" transfrom!");
-        }
+        Transform baseOrgin;
+        int j = this.board.availibleTeams.teamToSliceMapping[team];
+        baseOrgin = this.board.slices[j].getOrgin();
 
-        GameObject playerGameObj = GameObject.Instantiate(this.playerPrefab, obj.transform.position, obj.transform.rotation);
+        GameObject playerGameObj = GameObject.Instantiate(this.playerPrefab, baseOrgin.transform.position, baseOrgin.transform.rotation);
         Player player = playerGameObj.GetComponent<Player>();
         NetworkServer.AddPlayerForConnection(conn, playerGameObj, playerControllerId);
 

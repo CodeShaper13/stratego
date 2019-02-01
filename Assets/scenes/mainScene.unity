@@ -405,7 +405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  username: 
 --- !u!4 &499467382
 Transform:
   m_ObjectHideFlags: 0
@@ -6048,6 +6047,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState: 0
   allCells: []
+  slices:
+  - {fileID: 1858892693}
+  - {fileID: 514553535}
+  - {fileID: 1239360275}
+  - {fileID: 1141846972}
+  - {fileID: 303845756}
+  - {fileID: 844935162}
   allPlayers: []
   turnIndex: 0
 --- !u!4 &1942619451

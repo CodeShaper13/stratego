@@ -17,4 +17,8 @@ public class Slice : MonoBehaviour {
     public int getSliceIndex() {
         return this.sliceIndex;
     }
+
+    public Transform getOrgin() {
+        return this.spawn;
+    }
 }

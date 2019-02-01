@@ -65,7 +65,7 @@ public class Piece : NetworkBehaviour {
     /// <summary>
     /// Returns the possible Cells that this Piece can move to.
     /// </summary>
-    public virtual List<Cell> getPossibleSquares() {
+    public virtual List<Cell> getPossibleMoves() {
         List<Cell> list = new List<Cell>();
         foreach(Cell cell in this.getCell().neighbors) {
             if(!cell.isWater && cell.getCurrentPiece().teamId != this.teamId) {

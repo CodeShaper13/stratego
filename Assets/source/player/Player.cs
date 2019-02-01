@@ -12,6 +12,7 @@ public class Player : NetworkBehaviour {
     private float announcementTimer;
     public Toggle readyToggle;
 
+    public WaitingUI waitingUI;
     public SetupUI setupUI;
 
     [SyncVar]
@@ -44,7 +45,7 @@ public class Player : NetworkBehaviour {
         Player.localPlayer = this;
 
         this.playerCamera.gameObject.SetActive(true);
-        this.setupUI.createUI();
+        this.setupUI.createUI(this);
 
 
         // DEBUG
@@ -78,6 +79,7 @@ public class Player : NetworkBehaviour {
             }
         }
 
+        this.waitingUI.gameObject.SetActive(this.board.gameState == 0);
         this.setupUI.gameObject.SetActive(this.board.gameState == 1);
 
         bool leftBtn = Input.GetMouseButtonDown(0);
@@ -95,7 +97,13 @@ public class Player : NetworkBehaviour {
                     if(leftBtn) {
                         // Remove a piece if we clicked one.
                         if(hitPiece != null && hitPiece.teamId == this.controllingTeamID) {
-                            this.setupUI.increaseCount(hitPiece.pieceType);
+                            // Update the text, now that we have removed a pice.
+                            foreach(SetupButton btn in this.setupUI.allButtons) {
+                                if(btn.getPieceType() == hitPiece.pieceType) {
+                                    btn.updateText();
+                                }
+                            }
+
                             // TODO piece dupe bug
                             //hitPiece.gameObject.SetActive(false); // Hide it, just in case the server is slow in receiving the message.
                             this.sendMessageToServer(new MessageRemovePiece(hitPiece.getCell().cellIndex));
@@ -105,7 +113,8 @@ public class Player : NetworkBehaviour {
                         if(hitCell != null) {
                             if(hitCell.teamID == this.controllingTeamID && hitCell.getCurrentPiece() == null) {
                                 SetupButton selectedPiece = this.setupUI.getSelectedPiece();
-                                if(selectedPiece != null && selectedPiece.reduceCount()) {
+                                if(selectedPiece != null && selectedPiece.canPlaceMore()) {
+                                    selectedPiece.updateText();
                                     this.sendMessageToServer(new MessageAddPiece(hitCell.cellIndex, selectedPiece.getPieceType(), this.controllingTeamID));
                                 }
                             }
@@ -178,7 +187,8 @@ public class Player : NetworkBehaviour {
     public void showText(string msg, float duration, bool showInCorner = false) {
         print(this.name + "Showing text: " + msg);
         if(showInCorner) {
-            this.cornerText.text = msg;
+            this.waitingUI.playersRemainingText.text = msg;
+            //this.cornerText.text = msg;
         } else {
             this.announcementText.text = msg;
             this.announcementTimer = duration;

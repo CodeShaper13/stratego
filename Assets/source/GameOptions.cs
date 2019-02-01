@@ -3,7 +3,7 @@
     public static bool amphibiousFives = false;
     public static bool spyKillAll = true;
     public static bool nineLongMove = false;
-    public static int maxPlayers = 2;
+    public static int maxPlayers = 3;
 
     public static readonly int flagCount = 1;
     public static int bombCount = 6;

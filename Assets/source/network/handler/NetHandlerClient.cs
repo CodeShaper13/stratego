@@ -12,7 +12,7 @@ public class NetHandlerClient : NetHandlerBase {
 
     protected override void registerHandlers() {
         this.registerMsg<MessageShowText>();
-        this.registerMsg<MessageChangTeurn>();
+        this.registerMsg<MessageChangeTurn>();
         this.registerMsg<MessageSetPieceVisible>();
         this.registerMsg<MessageStartSpectating>();
     }
@@ -26,7 +26,7 @@ public class NetHandlerClient : NetHandlerBase {
         }
     }
 
-    public void tellTurn(MessageChangTeurn msg) {
+    public void tellTurn(MessageChangeTurn msg) {
         string s;
         if(msg.i == this.player.controllingTeamID) {
             s = "Your Turn";
