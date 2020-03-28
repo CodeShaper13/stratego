@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283fa6c12dc918d428914f7325afd7ab, type: 3}
+  m_Name: BoardSquare
+  m_EditorClassIdentifier: 
+  stringId: square10x10
+  prefab: {fileID: 970848795711944099, guid: 828e6589df58e7b46ad16d213d4e82dd, type: 3}
+  maxPieces: 40
+  oneCount: 1
+  twoCount: 1
+  threeCount: 2
+  fourCount: 3
+  fiveCount: 4
+  sixCount: 4
+  sevenCount: 4
+  eightCount: 5
+  nineCount: 8
+  bombCount: 6
+  spyCount: 1

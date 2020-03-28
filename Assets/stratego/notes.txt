@@ -1,0 +1,40 @@
+All cells are gray.
+
+The player still need to know what cells they own for setup visual and placing pieces.  In the start game msg, a number is sent telling them what slice is their own.  Then on the client side a field for the cell is set.
+
+
+
+Slice to team mapping:
+
+Square
+s[0] = t0
+s[1] = t1
+s[2]
+
+Hexagon(3 Players)
+s[0] = t0
+s[1]
+s[2] = t1
+s[3]
+s[4] = t2
+s[5]
+
+Hexagon(4 Players)
+s[0] = t0
+s[1] = t1
+s[2]
+s[3] = t2
+s[4] = t3
+s[5]
+
+Hexagon(6 Players)
+s[0] = t0
+s[1] = t1
+s[2] = t2
+s[3] = t3
+s[4] = t4
+s[5] = t5
+
+
+Team order:
+RED, BLUE, YELLOW, GREEN, ORANGE, PURPLE
