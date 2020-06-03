@@ -4,6 +4,7 @@ public class MessageShowAttackUI : AbstractMessageServer {
 
     public GameObject attackerPiece;
     public GameObject defenderPiece;
+    // -1 if it was a tie.
     public int winnerId;
 
     public MessageShowAttackUI() {

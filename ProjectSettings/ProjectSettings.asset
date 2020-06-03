@@ -78,7 +78,7 @@ PlayerSettings:
   submitAnalytics: 1
   usePlayerLog: 1
   bakeCollisionMeshes: 0
-  forceSingleInstance: 0
+  forceSingleInstance: 1
   resizableWindow: 1
   useMacAppStoreValidation: 0
   macAppStoreCategory: public.app-category.games
@@ -260,7 +260,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 8bfe2799b72d96445a41d4685aa8d68b, type: 3}
+      m_Icon: {fileID: 2800000, guid: d238651d2c6aac14aa34a59ee1cbff30, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

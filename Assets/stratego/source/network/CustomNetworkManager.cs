@@ -91,9 +91,10 @@ public class CustomNetworkManager : NetworkManager {
             } else {
                 // Tell the rejoining player their team.
                 this.board.sendTeamInfo(newPlayer);
-                print("sending info");
             }
-        } else if(this.board.gameState == GameStates.PLAYING) {
+        }
+
+        if(this.board.gameState == GameStates.PLAYING) {
             if(!makeNewPlayer) {
                 // Tell them who's turn it is.
                 newPlayer.sendMessage(new MessageChangeTurn(this.board.getCurrentPlayer().getTeam()));

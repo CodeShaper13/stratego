@@ -52,7 +52,7 @@ public class UIAttack : UIBase {
     /// <summary>
     /// Sets the data that this UI needs.
     /// </summary>
-    public void setData(Piece attacker, Piece defender, Team winnerTeam) {
+    public void setData(Piece attacker, Piece defender, /* Null for a tie */ Team winnerTeam) {
         this.attacker = attacker;
         this.defender = defender;
 
@@ -78,6 +78,8 @@ public class UIAttack : UIBase {
         string letterA = ".";
         string letterD = ".";
         string outcomeMsg;
+
+        // Figure out the letters to show to the team.
         if(isAttacker) {
             letterA = this.attacker.getPieceLetter();
             letterD = this.defender.getPieceLetter();
@@ -89,7 +91,6 @@ public class UIAttack : UIBase {
         if(!isInvolved) {
             letterA = "?";
             letterD = "?";
-            outcomeMsg = winnerTeam.getName() + " wins";
         }
 
         if(winnerTeam == null) {
